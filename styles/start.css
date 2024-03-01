@@ -3,15 +3,10 @@
 }
 
 #start {
-  position: relative;
-
-  display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
   flex-direction: column;
-  height: 100%;
-  height: -webkit-fill-available;
 
   background: url("../assets/bg.webp"), rgba(0, 0, 0, 0.9);
   background-position: center;

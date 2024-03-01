@@ -24,6 +24,8 @@ body {
   font-weight: 400;
   font-style: normal;
   font-variation-settings: "wdth" 100;
+  line-height: 1.2;
+  overflow: hidden;
 }
 
 * {
@@ -56,4 +58,23 @@ h6,
   font-weight: 400;
   font-style: normal;
   margin: 0;
+}
+
+section {
+  display: none;
+  position: relative;
+  height: 100%;
+  height: -webkit-fill-available;
+}
+
+section.active {
+  display: flex;
+}
+
+#particles-js {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }

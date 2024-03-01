@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="./styles/button.css" />
     <link rel="stylesheet" href="./styles/orientation.css" />
     <link rel="stylesheet" href="./styles/start.css" />
+    <link rel="stylesheet" href="./styles/game.css" />
 
     <!-- disable cache -->
     <meta
@@ -35,7 +36,8 @@
     />
   </head>
   <body>
-    <section id="start">
+    <div id="particles-js"></div>
+    <section id="start" class="active">
       <div class="divider">
         <div class="line"></div>
       </div>
@@ -46,13 +48,76 @@
       </div>
     </section>
 
-    <section id="game"></section>
+    <section id="game">
+      <div class="header">
+        <div class="title">
+          <h1>BANDISLOT</h1>
+        </div>
+        <div class="placeholder"></div>
+        <div class="balance-holder">
+          <span class="material-symbols-outlined"> monetization_on </span>
+          <span id="balance"></span>
+        </div>
+      </div>
+
+      <div class="machine-holder">
+        <div class="machine">
+          <div class="reel">
+            <div class="reel-container" id="reel-1"></div>
+          </div>
+          <div class="reel">
+            <div class="reel-container" id="reel-2"></div>
+          </div>
+          <div class="reel">
+            <div class="reel-container" id="reel-3"></div>
+          </div>
+          <div class="reel">
+            <div class="reel-container" id="reel-4"></div>
+          </div>
+
+          <div class="divider">
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="bet">
+          <button id="sub-button" disabled>
+            <span class="material-symbols-outlined"> remove </span>
+          </button>
+          <div id="bet-value" disabled></div>
+          <button id="add-button" disabled>
+            <span class="material-symbols-outlined"> add </span>
+          </button>
+        </div>
+
+        <div class="multipliers">
+          <button id="x2-button" disabled>X2</button>
+          <button id="x3-button" disabled>X3</button>
+          <button id="x5-button" disabled>X5</button>
+        </div>
+
+        <button id="spin-button" class="primary" disabled>SPIN</button>
+      </div>
+
+      <div class="dialog-holder">
+        <div id="win-dialog"></div>
+
+        <div id="game-over-dialog" class="dialog">
+          <h1>Game Over</h1>
+          <button id="reset-button" class="primary">RESET</button>
+        </div>
+      </div>
+    </section>
 
     <div id="orientation">
       <p>Please rotate your device</p>
       <span class="material-symbols-outlined"> screen_rotation </span>
     </div>
 
+    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="./app.js"></script>
+    <script src="./particles-js.config.js"></script>
   </body>
 </html>
