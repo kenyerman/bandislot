@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BANDISLOT</title>
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Kode+Mono:wght@400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+
+    <!-- styles -->
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/button.css" />
+    <link rel="stylesheet" href="./styles/orientation.css" />
+    <link rel="stylesheet" href="./styles/start.css" />
+
+    <!-- disable cache -->
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
+    />
+  </head>
+  <body>
+    <section id="start">
+      <div class="divider">
+        <div class="line"></div>
+      </div>
+
+      <div class="card">
+        <h1>BANDISLOT</h1>
+        <button id="start-button" class="primary">Start</button>
+      </div>
+    </section>
+
+    <section id="game"></section>
+
+    <div id="orientation">
+      <p>Please rotate your device</p>
+      <span class="material-symbols-outlined"> screen_rotation </span>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

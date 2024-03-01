@@ -1,0 +1,155 @@
+:root {
+  --start-section-animation-duration: 1200ms;
+}
+
+#start {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-direction: column;
+  height: 100%;
+  height: -webkit-fill-available;
+
+  background: url("../assets/bg.webp"), rgba(0, 0, 0, 0.9);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#start .card {
+  border-radius: 24px;
+  padding: 24px;
+  border: 1px solid var(--primary-color);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0px 0px 15px 5px rgba(176, 38, 255, 0.3);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-direction: column;
+
+  animation: startCardEnter var(--start-section-animation-duration) ease
+      forwards,
+    calc(var(--start-section-animation-duration) / 2) startCardGlow
+      calc(var(--start-section-animation-duration) / 2) ease infinite
+      alternate-reverse;
+}
+
+#start.destroy .card {
+  animation: startCardExit var(--start-section-animation-duration) ease forwards;
+}
+
+@keyframes startCardEnter {
+  0% {
+    transform: scale(500%);
+  }
+  50% {
+    transform: scale(100%);
+  }
+  60% {
+    transform: rotate3d(1, 0, 0, 30deg);
+  }
+  100% {
+    transform: rotate3d(1, 0, 0, 0);
+  }
+}
+
+@keyframes startCardGlow {
+  0% {
+    box-shadow: 0px 0px 15px 5px rgba(176, 38, 255, 0.3);
+  }
+  100% {
+    box-shadow: 0px 0px 15px 5px rgba(176, 38, 255, 0.9);
+  }
+}
+
+@keyframes startCardExit {
+  0% {
+    transform: rotate3d(1, 0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate3d(1, 0, 0, 90deg);
+    opacity: 0;
+  }
+}
+
+#start .divider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation: startBackgroundFadeIn var(--start-section-animation-duration) ease
+    forwards;
+}
+
+#start.destroy .divider {
+  animation: startBackgroundFadeOut var(--start-section-animation-duration) ease
+    forwards;
+}
+
+@keyframes startBackgroundFadeIn {
+  0% {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
+@keyframes startBackgroundFadeOut {
+  0% {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  100% {
+    background: rgba(0, 0, 0, 1);
+  }
+}
+
+#start .divider .line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary-color),
+    var(--primary-color),
+    transparent
+  );
+  width: 0;
+  animation: startLineGrow var(--start-section-animation-duration) ease forwards;
+}
+
+#start.destroy .divider .line {
+  animation: startLineShrink var(--start-section-animation-duration) ease
+    forwards;
+}
+
+@keyframes startLineGrow {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes startLineShrink {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
