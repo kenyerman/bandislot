@@ -101,7 +101,10 @@
   };
 
   const addImagesToReel = (reel) => {
-    for (let j = 0; j < IMAGE_COUNT; j++) {
+    // family edition
+    const famOffset = window.location.search.includes("family") ? 5 : 0;
+
+    for (let j = famOffset; j < famOffset + IMAGE_COUNT; j++) {
       const el = document.createElement("img");
       el.setAttribute("src", `./assets/symbols/image${j}.png`);
       el.setAttribute("data-value", j);
@@ -234,6 +237,15 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     refreshBalance();
+
+    let secretClicked = 0;
+    document.getElementById("secret").addEventListener("click", () => {
+      if (secretClicked++ < 5) {
+        return;
+      }
+
+      window.location.search = "?family";
+    });
 
     const { subBetBtn, addBetBtn, x2Btn, x3Btn, x5Btn, spinBtn } =
       getControls();
