@@ -77,12 +77,14 @@
 #game .machine-holder {
   flex: 1 0 auto;
   padding: 12px;
+  display: flex;
+  flex-direction: column;
 }
 
 #game .machine-holder .machine {
   position: relative;
 
-  height: 100%;
+  flex: 1 1 auto;
   border-radius: 24px;
   border: 1px solid var(--primary-color);
   background-color: rgba(176, 38, 255, 0.3);
@@ -131,7 +133,6 @@
 
 #game .machine-holder .machine .reel {
   flex: 0 1 20%;
-  height: 100%;
 
   border-radius: 24px;
   border: 1px solid var(--primary-color);
