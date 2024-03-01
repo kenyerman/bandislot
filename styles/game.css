@@ -302,6 +302,7 @@
 
 #game .dialog-holder #win-dialog {
   opacity: 0;
+  display: none;
   pointer-events: none;
 
   font-size: 76px;
@@ -317,6 +318,7 @@
 }
 
 #game .dialog-holder #win-dialog.active {
+  display: block;
   opacity: 1;
   transition: 120ms opacity ease;
 }

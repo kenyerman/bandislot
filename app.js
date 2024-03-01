@@ -8,6 +8,53 @@
   const BET_EPSILON = 100;
   const BALANCE_KEY = "@bandislot/balance";
 
+  const ambientSound = new Howl({
+    src: "./assets/sounds/ambience.ogg",
+    loop: true,
+    volume: 0.2,
+  });
+
+  const lostSound = new Howl({
+    src: "./assets/sounds/lost.ogg",
+    volume: 1,
+  });
+
+  const reelDoneSound = new Howl({
+    src: "./assets/sounds/reel_done.ogg",
+    volume: 0.8,
+  });
+
+  const startSound = new Howl({
+    src: "./assets/sounds/start.ogg",
+    loop: true,
+    volume: 1,
+  });
+
+  const win2Sound = new Howl({
+    src: "./assets/sounds/win2.ogg",
+    volume: 1,
+  });
+
+  const win2x2Sound = new Howl({
+    src: "./assets/sounds/win2x2.ogg",
+    volume: 1,
+  });
+
+  const win3Sound = new Howl({
+    src: "./assets/sounds/win3.ogg",
+    volume: 1,
+  });
+
+  const win4Sound = new Howl({
+    src: "./assets/sounds/win4.ogg",
+    volume: 1,
+  });
+
+  const moneySound = new Howl({
+    src: "./assets/sounds/money.ogg",
+    volume: 1,
+  });
+
   const getAnimation = (name) =>
     new Promise((res) => {
       document
@@ -123,7 +170,12 @@
             easing: "ease-out",
             fill: "forwards",
           }
-        ).addEventListener("finish", () => resolve());
+        ).addEventListener("finish", () => {
+          if (!instant) {
+            reelDoneSound.play();
+          }
+          resolve();
+        });
       });
     });
 
@@ -169,6 +221,8 @@
     if (balance <= 0) {
       const dialog = document.querySelector("#game-over-dialog");
       dialog.classList.add("active");
+
+      lostSound.play();
     }
   };
 
@@ -242,6 +296,8 @@
     document.querySelector("#start-button").addEventListener("click", () => {
       startSection.classList.add("destroy");
 
+      ambientSound.play();
+
       getAnimation("startCardExit")
         .then(() => {
           startSection.classList.remove("active", "destroy");
@@ -273,6 +329,8 @@
 
       setBalance(getBalance() - getBetAmount());
 
+      startSound.play();
+
       Promise.all(
         Array(REEL_COUNT)
           .fill(0)
@@ -281,6 +339,8 @@
             return spinReelDown(i, next);
           })
       ).then(() => {
+        startSound.stop();
+
         const reelValues = [];
         const valueCount = {};
 
@@ -296,6 +356,23 @@
         if (!exp) {
           enableAvailableControls();
           return;
+        }
+
+        switch (exp) {
+          case 0:
+            return; // no win, already handled
+          case 1:
+            win2Sound.play();
+            break;
+          case 2:
+            win3Sound.play();
+            break; // TODO: decide 3 vs. 2x2
+          case 3:
+            win4Sound.play();
+            break;
+          default:
+            win2x2Sound.play();
+            break;
         }
 
         const animating = [];
@@ -339,8 +416,9 @@
         Promise.all(animating)
           .then(() => {
             const win = exp === 1 ? 1.05 : 15 ** (exp - 1);
-
             setBalance(getBalance() + getBetAmount() * win);
+
+            moneySound.play();
 
             return Promise.all([
               new Promise((res) => {
@@ -407,6 +485,7 @@
             ]);
           })
           .then(() => {
+            moneySound.stop();
             enableAvailableControls();
           });
       });
